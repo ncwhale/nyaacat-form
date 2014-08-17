@@ -2,7 +2,8 @@ express = require("express")
 path = require("path")
 favicon =  require('serve-favicon')
 logger = require("morgan")
-cookieParser = require("cookie-parser")
+#cookieParser = require("cookie-parser")
+session = require('cookie-session')
 bodyParser = require("body-parser")
 stylus = require('stylus')
 debug = require('debug')('app');
@@ -16,21 +17,27 @@ app = express()
 # view engine setup
 app.set "views", path.join(__dirname, "views")
 app.set "view engine", "jade"
+
+# env setup
 app.set 'port', config.express.port ? 3000
 app.set 'env', 'development' if config.express.develop?
 
+# static res
 app.use favicon(path.join(__dirname, 'public/favicon.ico'))
 app.use stylus.middleware(path.join(__dirname , 'public'))
 app.use express.static(path.join(__dirname, "public"))
 
+# dymaic setup
 app.use logger(config.express.logger ? 'dev')
 app.use bodyParser.json()
 app.use bodyParser.urlencoded config.express.urlencoded
-
+app.use session config.express.session
+###
 if config.express.secret?
   app.use cookieParser(config.express.secret)
 else
   app.use cookieParser()
+###
 
 app.use '/', routes
 
