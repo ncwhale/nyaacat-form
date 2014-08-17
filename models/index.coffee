@@ -1,0 +1,3 @@
+models = {}
+
+module.exports = models
