@@ -18,6 +18,8 @@
     "when": "~3.4.4",
     "cookie-session": "~1.0.2",
     "jeet": "~5.3.0",
-    "fluidity": "~0.2.0"
+    "fluidity": "~0.2.0",
+    "request": "~2.40.0",
+    "mongoose": "~3.8.15"
   }
 }
