@@ -1,0 +1,186 @@
+extends modals/layout
+
+block script
+  script(src="js/require.js")
+  script.
+    include modals/require-config.js
+    requirejs(['model/register']);
+
+block content
+  include modals/header
+  .row(style='margin-top: 1em;')
+    .small-12.medium-12.large-12.columns
+      form(data-abide='', method='post', action='/submit', novalidate='novalidate')
+        fieldset
+          legend Minecraft 服务器 「喵窝」 白名单申请表 - 个人信息页
+          .row
+            .large-6.medium-12.small-12.columns
+              #gameid
+                label
+                  | 游戏 ID
+                  br
+                  small 注册游戏时所用的 ID，必填。
+                small.error 请填写游戏 ID
+          .row
+            .large-6.medium-12.small-12.columns
+              #email
+                label
+                  | 邮件地址
+                  br
+                  small 请填写真实有效的邮件地址，以便接收审核结果和后续的重要通知。您的所有隐私将被严格保密。
+                  input(type='email', name='email', required='')
+                small.error 请填写邮件地址
+          .row
+            .large-12.columns
+              #referal
+                label
+                  | 受邀途径
+                  br
+                  small 从何处听说喵窝(网站/帖子地址、邀请人游戏 ID 等)？必填。
+                  input(type='text', name='referal', required='')
+                small.error 请填写受邀途径
+          .row
+            .large-12.columns
+              div
+                label(for='accountType')
+                  | 帐号状态
+                  br
+                  small 是否为正版用户？
+                  label(for='accountType1')
+                    input#accountType1(type='radio', name='accountType', value='legal', required='')
+                    | 正版
+                  label(for='accountType2')
+                    input#accountType2(type='radio', name='accountType', value='illegal', required='')
+                    | 非正版
+                small.error 请选择帐号状态
+          .row
+            .large-12.columns
+              div
+                label
+                  | 个人主页地址
+                  br
+                  small 包括但不限于 Github, Google+, Twitter... 可选填，但不填很有可能不会通过。
+                  input(type='url', name='homepage', placeholder='http://')
+          .row
+            .large-12.columns
+              div
+                label(for='selfintro')
+                  | 自我介绍
+                  br
+                  small 简单介绍自己，任何方面均可。不可以是空泛无意义的话。不填则不会通过。
+                  textarea#selfintro(name='selfIntro', cols='50', rows='6', required='')
+          .row
+            .large-12.columns
+              div
+                label(for='sthtosay')
+                  | 想说的话
+                  br
+                  small 有什么想对管理组说的？可不填。
+                  textarea#sthtosay(name='sthtosay', cols='50', rows='6')
+        fieldset
+          legend Minecraft 服务器 「喵窝」 白名单权限申请表 - 验证问题页
+          .row
+            .large-4.medium-12.small-12.columns
+              label(for='wikiurl')
+                | 「喵窝」服务器的 Wiki 地址是？
+                input#wikiurl(type='url', name='wikiurl', required='', placeholder='http://')
+            .large-4.medium-12.small-12.columns
+              label(for='mapurl')
+                | 「喵窝」服务器的动态地图地址是？
+                input#mapurl(type='url', name='mapurl', required='', placeholder='http://')
+            .large-4.medium-12.small-12.columns
+              label(for='epiccmd')
+                | 「喵窝」服务器中去往矿界的命令是？
+                input#epiccmd(type='text', name='epiccmd', required='')
+          br
+          .row
+            .large-12.columns
+              label(for='q1')
+                | 首次登录时因为网络问题掉进虚空，应该怎么办？
+                label(for='q1a1')
+                  input#q1a1(type='radio', name='q1a', value='我要保装备，快速按下收费的 /home 或 /spawn 返回出生点', required='')
+                  | 我要保装备，快速按下收费的 /home 或 /spawn 返回出生点
+                label(for='q1a2')
+                  input#q1a2(type='radio', name='q1a', value='什么都不用做，重生后使用出生点附近的重置木牌来再次获取新人装备', required='')
+                  | 什么都不用做，重生后使用出生点附近的重置木牌来再次获取新人装备
+                label(for='q1a3')
+                  input#q1a3(type='radio', name='q1a', value='在服内用力发牢骚', required='')
+                  | 在服内用力发牢骚
+          br
+          .row
+            .large-12.columns
+              label(for='q2')
+                | 我(或和其他玩家一起)想要使用大片土地建立村落，应该...?
+                label(for='q2a1')
+                  input#q2a1(type='radio', name='q2a', value='在社群向管理组申请建立村落，并按要求附上村落NW-SE范围坐标、村落名称、负责玩家和建设计划', required='')
+                  | 在社群向管理组申请建立村落，并按要求附上村落NW-SE范围坐标、村落名称、负责玩家和建设计划
+                label(for='q2a2')
+                  input#q2a2(type='radio', name='q2a', value='用力刷围栏等方块，圈出大片土地，这块地方就是我的了', required='')
+                  | 用力刷围栏等方块，圈出大片土地，这块地方就是我的了
+                label(for='q2a3')
+                  input#q2a3(type='radio', name='q2a', value='直接找个地方开造', required='')
+                  | 直接找个地方开造
+          br
+          .row
+            .large-12.columns
+              label(for='q3')
+                | 看到了很有意思的建筑，但是找不到入口或门打不开，应该...?
+                label(for='q3a1')
+                  input#q3a1(type='radio', name='q3a', value='尝试联系负责玩家请求进入', required='')
+                  | 尝试联系负责玩家请求进入
+                label(for='q3a2')
+                  input#q3a2(type='radio', name='q3a', value='看起来附近没人，我挖进去', required='')
+                  | 看起来附近没人，我挖进去
+          br
+          .row
+            .large-12.columns
+              label(for='q4')
+                | 走到半路看到了铁路，但是太高上不去，要怎么办？
+                label(for='q4a1')
+                  input#q4a1(type='radio', name='q4a', value='沿着铁路走，在就进的车站或其他预留的入口或隧道上方进入', required='')
+                  | 沿着铁路走，在就进的车站或其他预留的入口或隧道上方进入
+                label(for='q4a2')
+                  input#q4a2(type='radio', name='q4a', value='挖一堆泥土石头，用方块堆叠的方式跳进去', required='')
+                  | 挖一堆泥土石头，用方块堆叠的方式跳进去
+          br
+          .row
+            .large-12.columns
+              label(for='q5')
+                | 在矿界挖矿时，应该？
+                label(for='q5a1')
+                  input#q5a1(type='radio', name='q5a', value='随便找个地方或别人挖过的矿道，见到想要的矿石就挖走，反正有 /home 不抖', required='')
+                  | 随便找个地方或别人挖过的矿道，见到想要的矿石就挖走，反正有 /home 不抖
+                label(for='q5a2')
+                  input#q5a2(type='radio', name='q5a', value='斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘', required='')
+                  | 斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘
+          br
+          .row
+            .large-12.columns
+              label(for='q6')
+                | 进入了别人的村落 看到没有锁的箱子 我应该？
+                textarea#q6(name='q6a', cols='50', rows='5', required='')
+          br
+          .row
+            .large-12.columns
+              label(for='q7')
+                | 那个人的建筑物上有漂亮的钻石块，我还缺很多钻石工具 我应该？
+                textarea#q7(name='q7a', cols='50', rows='5', required='')
+          br
+          .row
+            .large-12.columns
+              label(for='q8')
+                | 遇到了自然村庄，我会？
+                textarea#q8(name='q8a', cols='50', rows='5', required='')
+        br
+        .row
+          .large-12.columns
+            label(for='q9')
+              | 如果没有通过审核，您的想法或行动
+              textarea#q9(name='q9a', cols='50', rows='5', required='')
+        br
+        .row
+          .large-12.columns
+            button.button(type='submit') 提交
+
+  include modals/footer
+  

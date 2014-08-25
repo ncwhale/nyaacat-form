@@ -1,9 +1,10 @@
 {
   "name": "nyaacat-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build-coffee": "./node_modules/coffee-script/bin/coffee -bcm -o ./public/js ./public/coffee"
   },
   "dependencies": {
     "stylus": "~0.47.3",

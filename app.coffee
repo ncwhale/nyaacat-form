@@ -23,7 +23,7 @@ app.set 'port', config.express.port ? 3000
 app.set 'env', 'development' if config.express.develop?
 
 # static res
-app.use favicon(path.join(__dirname, 'public/favicon.ico'))
+app.use favicon(path.join(__dirname, 'public/ico/favicon.ico'))
 app.use stylus.middleware(path.join(__dirname , 'public'))
 app.use express.static(path.join(__dirname, "public"))
 
