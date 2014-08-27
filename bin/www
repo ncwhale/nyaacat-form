@@ -6,8 +6,8 @@ var debug = require('debug')('www');
 var app = require('../app');
 
 var port = app.get('port');
-if (typeof port !== "undefined" && port !== null) {
-	app.set('port', process.env.PORT || 3000);
+if (typeof port === "undefined" || port === null) {
+   app.set('port', process.env.PORT || 3000);
 }
 
 var server = app.listen(app.get('port'), function() {
