@@ -10,7 +10,12 @@ config =
     develop:  true
     urlencoded:
       extended: true
-   mongodb:
+  mongodb:
     link:     ''
+  minecraft:
+    host: 'localhost'
+    port: 25565
+    user: 'admin'
+    pass: 'password from jsonapi config'
 
 module.exports = config
