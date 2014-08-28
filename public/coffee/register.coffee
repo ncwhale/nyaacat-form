@@ -1,1 +1,1 @@
-requirejs ['jquery','bootstrap']
+requirejs ['bootstrap']

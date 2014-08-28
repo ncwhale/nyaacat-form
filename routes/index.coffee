@@ -19,7 +19,7 @@ fs
       model = require path.join __dirname, file
       #routes[model.name] = model
       router.use "/#{model.path ? file}", model
-      debug "Loaded router: #{model.path ? file}"
+      debug "Loaded router: /#{model.path ? file}"
     catch e
       debug "Route load error: #{e}" 
 
