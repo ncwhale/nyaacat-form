@@ -2,6 +2,7 @@ config =
   express:
     logger:   'tiny'
     port:     3000
+    views:    'views'
     session:
       name:   'nyan'
       keys:    ['Yakumo Yukari', 'Saigyouji Yuyuko', 'Yagokoro Eirin', 'Yasaka Kanako', 'Hijiri Byakuren']
@@ -10,12 +11,19 @@ config =
     develop:  true
     urlencoded:
       extended: true
-  mongodb:
-    link:     ''
-  minecraft:
-    host: 'localhost'
-    port: 25565
-    user: 'admin'
-    pass: 'password from jsonapi config'
+  mailer:
+    template:
+      path: 'mails'
+      engine: 'jade'
+    bot:
+      type: 'smtp'
+      host: 'smtp.somewhere.com'
+      port: 495
+      ssl:  true
+      user: 'someone@somewhere.com'
+      pass: 'passwordNeeded!'
+      sender: 'Who <someone@somewhere.com>'
+      
+  mongodb: 'mongodb://localhost/collection'
 
 module.exports = config

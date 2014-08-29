@@ -4,7 +4,8 @@ block script
   script(src="js/lib/require.js")
   script
     include modals/require-config.js
-    != "requirejs(['model/register']);"
+    :coffee
+      requirejs ['model/register']
 
 block content
   include modals/header

@@ -8,7 +8,6 @@ config = require '../config'
 
 router = express.Router()
 selfname = path.basename __filename
-#routes = []
 
 fs
   .readdirSync(__dirname)
@@ -17,16 +16,10 @@ fs
   .forEach (file)->
     try
       model = require path.join __dirname, file
-      #routes[model.name] = model
-      router.use "/#{model.path ? file}", model
-      debug "Loaded router: /#{model.path ? file}"
+      path = '/' + (model.path ? file.split('.')[0])
+      router.use path, model
+      debug "Loaded router: #{path}"
     catch e
       debug "Route load error: #{e}" 
-
-# GET home page. 
-#router.get "/", (req, res) ->
-#  res.render "index",
-#    title: "Express"
-#  return
 
 module.exports = router

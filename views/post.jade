@@ -1,0 +1,9 @@
+extends modals/layout
+
+
+block content
+  //- req: request from user. need track post data.
+  h1= message
+  h2= error.status
+  p #{error.stack}
+  p= //- raw output
