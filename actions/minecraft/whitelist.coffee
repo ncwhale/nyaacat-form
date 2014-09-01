@@ -5,10 +5,24 @@ debug = require('debug')('minecraft::whitelist')
 class whitelist
   add: (player)->
     debug "Add #{player} to whitelist"
-    nodefn.call(mc['players.name.unwhitelist'], [ player ])
+
+    args = [
+      player
+      ]
+
+    nodefn.call (arg, cb)->
+      mc['players.name.whitelist'] arg, cb
+    , args
 
   del: (player)->
     debug "Del #{player} from whitelist"
-  	nodefn.call(mc['players.name.whitelist'], [ player ])
 
-module.exports = whitelist
+    args = [
+      player
+      ]
+      
+    nodefn.call (arg, cb)->
+      mc['players.name.unwhitelist'] arg, cb
+    , args
+
+module.exports = new whitelist

@@ -47,7 +47,7 @@ class Minecraft
       cb err, body and body[body.result] or body if cb
       return
 
-    @
+    return
 
 [
   'chat.broadcast'
@@ -248,6 +248,7 @@ class Minecraft
   'worlds.world.set_time'
 ].sort().forEach (command) ->
   Minecraft::[command] = (args, cb) ->
+    debug @call, @
     @call command, args, cb
 
   #TODO: 将功能分隔符.给迭代到子项目里面去喵!

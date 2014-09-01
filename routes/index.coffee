@@ -6,8 +6,8 @@ debug = require('debug')('app::route');
 
 config = require '../config'
 
-router = express.Router()
-#  caseSensitive: true
+router = express.Router
+  caseSensitive: true
   
 selfname = path.basename __filename
 
