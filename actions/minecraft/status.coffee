@@ -1,7 +1,11 @@
 mc = require './connect'
-When = require 'when'
+nodefn = require 'when/node'
 
-status = {}
+
+status = 
+  get: ()->
+    nodefn.call (cb)->
+      mc['server'] [], cb
 
 
 module.exports = status

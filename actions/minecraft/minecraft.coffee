@@ -2,6 +2,10 @@ crypto = require("crypto")
 request = require("request")
 debug = require('debug')('minecraft');
 
+#TODO: 使用 when 和 rest 
+#When = require 'when'
+
+
 class Minecraft 
   constructor: (@options = {}) ->
     defaults =
@@ -248,7 +252,6 @@ class Minecraft
   'worlds.world.set_time'
 ].sort().forEach (command) ->
   Minecraft::[command] = (args, cb) ->
-    debug @call, @
     @call command, args, cb
 
   #TODO: 将功能分隔符.给迭代到子项目里面去喵!
