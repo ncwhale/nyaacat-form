@@ -7,6 +7,8 @@ debug = require('debug')('app::route');
 config = require '../config'
 
 router = express.Router()
+#  caseSensitive: true
+  
 selfname = path.basename __filename
 
 fs
@@ -16,9 +18,9 @@ fs
   .forEach (file)->
     try
       model = require path.join __dirname, file
-      path = '/' + (model.path ? file.split('.')[0])
-      router.use path, model
-      debug "Loaded router: #{path}"
+      rpath = '/' + (model.path ? file.split('.')[0])
+      router.use rpath, model
+      debug "Loaded router: #{rpath}"
     catch e
       debug "Route load error: #{e}" 
 

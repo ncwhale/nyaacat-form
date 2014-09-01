@@ -1,6 +1,6 @@
 crypto = require("crypto")
 request = require("request")
-debug = require('debug')('Minecraft');
+debug = require('debug')('minecraft');
 
 class Minecraft 
   constructor: (@options = {}) ->
@@ -13,7 +13,7 @@ class Minecraft
 
     @key_cache = []
 
-  generateUrl: (method, args = [], tag) ->
+  generateUrl: (method, args = [], tag = null) ->
     key = @generateKey(method)
     json = 
       "name": method
@@ -22,7 +22,7 @@ class Minecraft
       "arguments": args
     json["tag"] = tag if tag?
 
-    url = "http://#{@options.host}:#{@options.port}/api/2/call?json=#{escape(JSON.stringify(json))}"
+    "http://#{@options.host}:#{@options.port}/api/2/call?json=#{escape(JSON.stringify(json))}"
 
   generateKey: (method) ->
     if @key_cache[method]?
@@ -30,10 +30,11 @@ class Minecraft
 
     @key_cache[method] = crypto.createHash("sha256").update(@options.user + method + @options.pass).digest "hex"
 
-  call: (method, args, cb, tag) ->
+  call: (method, args, cb, tag = null) ->
     if typeof args is "function"
       cb = args
       args = null
+      
     url = @generateUrl(method, args, tag)
     debug url
     request url, (err, res, body) ->
@@ -47,8 +48,6 @@ class Minecraft
       return
 
     @
-
-
 
 [
   'chat.broadcast'
@@ -254,8 +253,6 @@ class Minecraft
   #TODO: 将功能分隔符.给迭代到子项目里面去喵!
   #cmd_domain = command.split '.'  
   #for cd in cmd_domain
-    
-   
     
   return
 

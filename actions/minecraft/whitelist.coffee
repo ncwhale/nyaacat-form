@@ -1,14 +1,14 @@
 mc = require './connect'
-when = require 'when'
+nodefn = require 'when/node'
 debug = require('debug')('minecraft::whitelist')
 
-whitelist = 
-  add: (player, cb)->
-  	debug "Add #{player} to whitelist"
-  	mc['players.name.unwhitelist'](player, cb)
+class whitelist
+  add: (player)->
+    debug "Add #{player} to whitelist"
+    nodefn.call(mc['players.name.unwhitelist'], [ player ])
 
   del: (player)->
     debug "Del #{player} from whitelist"
-  	mc['players.name.whitelist'](player, cb)
+  	nodefn.call(mc['players.name.whitelist'], [ player ])
 
 module.exports = whitelist
