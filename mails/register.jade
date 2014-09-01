@@ -1,0 +1,77 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="content-type", content="text/html; charset=utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title= gameid
+      | 申请加入喵窝服务器
+    block style
+  body
+    block content
+    block script
+
+block content
+  p 尊敬的管理员：
+
+  p
+    | 玩家
+    = gameid
+    | 申请加入喵窝服务器，玩家信息：
+
+  p Email:
+    = email
+
+  p 受邀途径:
+    = referal
+
+  p 帐户状态:
+    = accountType
+
+  p 个人主页:
+    = homepage
+
+  p 自我介绍:
+    span= selfIntro
+
+  p 想说的话:
+    span= sthtosay
+
+  p 如果没有通过审核:
+    span= q9a
+
+  p --- 验证问题部分 ---
+
+  p 1. Wiki 地址:
+    span= wikiurl
+
+  p 2. 动态地图地址:
+    span= mapurl
+
+  p 3. 去往矿界的命令:
+    span= epiccmd
+
+  p 4. 掉进虚空:
+    span= q1a
+
+  p 5. 建立村落:
+    span= q2a
+
+  p 6. 进入建筑:
+    span= q3a
+
+  p 7. 进入铁路:
+    span= q4a
+
+  p 8. 在矿界挖矿:
+    span= q5a
+
+  p 9. 进入他人村落:
+ 
+    span= q6a
+
+  p 10. 看到钻石块: 
+     span= q7a
+
+  p 11. 遇到自然村庄:
+     span= q8a

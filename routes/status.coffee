@@ -8,10 +8,9 @@ status = require '../actions/minecraft/status'
 router.get '/', (req, res)->
   status.get().then( (data)->
     res.render 'status', data
-  ).error((err)->
+  ).catch( (err)->
     res.render 'error', err
-  )  
-      
+  )
   return
 
 module.exports = router

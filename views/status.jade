@@ -1,0 +1,75 @@
+extends modals/layout
+
+block script
+  script(src="js/lib/require.js")
+  script
+    include modals/require-config.js
+    :coffee
+    //- TODO:Autorefresh this page.
+    //-  requirejs ['model/status']
+
+block content
+  include modals/header
+  
+  #content.row
+    .col-xs-12
+      H1= serverName
+      H2= version
+    .col-xs-12 服务器人口：
+      span= players.length
+      | /
+      span= maxPlayers
+    .col-xs-12 在线玩家：
+      ul
+        each p in players
+          li= p.name
+    .col-xs-12 开放世界：
+      ul
+        each w in worlds
+          li= w.name
+
+  include modals/footer
+  
+//- reply
+ { port: 25565,
+  maxPlayers: 249,
+  name: 'CraftBukkit',
+  players: 
+  [ { whitelisted: true,
+    firstPlayed: 1409155657,
+    worldInfo: [Object],
+    op: false,
+    location: [Object],
+    exhaustion: 1.0256,
+    lastPlayed: 1409163571,
+    sleeping: false,
+    enderchest: [Object],
+    health: 20,
+    banned: false,
+    ip: '/218.88.85.63:56992',
+    gameMode: 1,
+    inVehicle: false,
+    level: 0,
+    inventory: [Object],
+    name: 'ncwhale',
+    foodLevel: 20,
+    experience: 0,
+    itemInHand: [Object],
+    sneaking: false,
+    world: 0,
+    sprinting: false } ],
+  worlds:
+   [ { remainingWeatherTicks: 4413,
+       hasStorm: false,
+       time: 10486,
+       isPVP: true,
+       environment: 'normal',
+       isThundering: false,
+       seed: '1317449363',
+       players: [],
+       name: 'world',
+       difficulty: 2,
+       fullTime: 8674486 },
+     ],
+  serverName: 'Nyan World',
+  version: 'git-Bukkit-1.7.2-R0.3-b3020jnks (MC: 1.7.2)' }

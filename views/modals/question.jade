@@ -1,0 +1,23 @@
+//- 显示问题到页面上
+  问题 type 包含：
+    text: 一行文本
+    textarea: 多行文本
+    radio: 单选
+    multi: 多选
+    check: 打勾
+    email: 邮件
+    url:   网址
+mixin question(q)
+  case q.type
+    when 'text'
+      .form-group
+        label.col-sm-2.control-label(for=q.name)= q.topic
+        .col-sm-10
+          input#inputEmail3.form-control(type='email', placeholder='Email')
+          span.help-block= q.help
+
+    default
+
+
+//- Use
+//- +question({})

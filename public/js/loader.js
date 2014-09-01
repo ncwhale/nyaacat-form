@@ -1,10 +1,3 @@
-var a;
-
-a = (function() {
-  function a() {}
-
-  return a;
-
-})();
+requirejs(['bootstrap']);
 
 //# sourceMappingURL=loader.map

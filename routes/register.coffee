@@ -9,8 +9,7 @@ router.get '/', (req, res)->
   return
 
 router.post '/', (req, res)->
-  res.render 'post_dump',
-  	req
+  res.render 'post', req
   return
 
 module.exports = router
