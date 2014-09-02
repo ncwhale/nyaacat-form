@@ -17,7 +17,7 @@ config =
     template:
       path: 'mails'
       engine: 'jade'
-    bot:
+    bot: #除了template共享配置外，剩下的每个节都单独配置一个邮送账号
       type: 'smtp'
       host: 'smtp.somewhere.com'
       port: 495
