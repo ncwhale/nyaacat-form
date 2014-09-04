@@ -9,21 +9,28 @@ block script
 
 block content
   include modals/header
-  .row(style='margin-top: 1em;')
-    .small-12.medium-12.large-12.columns
-      form(data-abide='', method='post', action='/submit', novalidate='novalidate')
-        fieldset
-          legend Minecraft 服务器 「喵窝」 白名单申请表 - 个人信息页
-          .row
-            .large-6.medium-12.small-12.columns
+  .container
+    .row
+      .col-xs-12.col-md-12.col-lg-12.columns
+        form.form-horizontal(role="form", data-abide='', method='post', action='.', novalidate='novalidate')
+          fieldset
+            legend Minecraft 服务器 「喵窝」 白名单申请表 - 个人信息页
+            .form-group
+              label.col-sm-4.control-label 
+                | 游戏 ID*
+              .col-sm-4
+                input.form-control#gameid(type="text", name="gameid", placeholder="")
+                .help-block 注册游戏时所用的 ID，必填。
+          .form-group
+            .col-lg-6.col-md-12.col-xs-12
               #gameid
                 label
                   | 游戏 ID
                   br
                   small 注册游戏时所用的 ID，必填。
                 small.error 请填写游戏 ID
-          .row
-            .large-6.medium-12.small-12.columns
+          .form-group
+            .col-lg-6.col-md-12.col-xs-12
               #email
                 label
                   | 邮件地址
@@ -31,8 +38,8 @@ block content
                   small 请填写真实有效的邮件地址，以便接收审核结果和后续的重要通知。您的所有隐私将被严格保密。
                   input(type='email', name='email', required='')
                 small.error 请填写邮件地址
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               #referal
                 label
                   | 受邀途径
@@ -40,8 +47,8 @@ block content
                   small 从何处听说喵窝(网站/帖子地址、邀请人游戏 ID 等)？必填。
                   input(type='text', name='referal', required='')
                 small.error 请填写受邀途径
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               div
                 label(for='accountType')
                   | 帐号状态
@@ -54,24 +61,24 @@ block content
                     input#accountType2(type='radio', name='accountType', value='illegal', required='')
                     | 非正版
                 small.error 请选择帐号状态
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               div
                 label
                   | 个人主页地址
                   br
                   small 包括但不限于 Github, Google+, Twitter... 可选填，但不填很有可能不会通过。
                   input(type='url', name='homepage', placeholder='http://')
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               div
                 label(for='selfintro')
                   | 自我介绍
                   br
                   small 简单介绍自己，任何方面均可。不可以是空泛无意义的话。不填则不会通过。
                   textarea#selfintro(name='selfIntro', cols='50', rows='6', required='')
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               div
                 label(for='sthtosay')
                   | 想说的话
@@ -80,22 +87,22 @@ block content
                   textarea#sthtosay(name='sthtosay', cols='50', rows='6')
         fieldset
           legend Minecraft 服务器 「喵窝」 白名单权限申请表 - 验证问题页
-          .row
-            .large-4.medium-12.small-12.columns
+          .form-group
+            .col-lg-4.col-md-12.col-xs-12
               label(for='wikiurl')
                 | 「喵窝」服务器的 Wiki 地址是？
                 input#wikiurl(type='url', name='wikiurl', required='', placeholder='http://')
-            .large-4.medium-12.small-12.columns
+            .col-lg-4.col-md-12.col-xs-12
               label(for='mapurl')
                 | 「喵窝」服务器的动态地图地址是？
                 input#mapurl(type='url', name='mapurl', required='', placeholder='http://')
-            .large-4.medium-12.small-12.columns
+            .col-lg-4.col-md-12.col-xs-12
               label(for='epiccmd')
                 | 「喵窝」服务器中去往矿界的命令是？
                 input#epiccmd(type='text', name='epiccmd', required='')
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q1')
                 | 首次登录时因为网络问题掉进虚空，应该怎么办？
                 label(for='q1a1')
@@ -108,8 +115,8 @@ block content
                   input#q1a3(type='radio', name='q1a', value='在服内用力发牢骚', required='')
                   | 在服内用力发牢骚
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q2')
                 | 我(或和其他玩家一起)想要使用大片土地建立村落，应该...?
                 label(for='q2a1')
@@ -122,8 +129,8 @@ block content
                   input#q2a3(type='radio', name='q2a', value='直接找个地方开造', required='')
                   | 直接找个地方开造
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q3')
                 | 看到了很有意思的建筑，但是找不到入口或门打不开，应该...?
                 label(for='q3a1')
@@ -133,8 +140,8 @@ block content
                   input#q3a2(type='radio', name='q3a', value='看起来附近没人，我挖进去', required='')
                   | 看起来附近没人，我挖进去
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q4')
                 | 走到半路看到了铁路，但是太高上不去，要怎么办？
                 label(for='q4a1')
@@ -144,8 +151,8 @@ block content
                   input#q4a2(type='radio', name='q4a', value='挖一堆泥土石头，用方块堆叠的方式跳进去', required='')
                   | 挖一堆泥土石头，用方块堆叠的方式跳进去
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q5')
                 | 在矿界挖矿时，应该？
                 label(for='q5a1')
@@ -155,32 +162,32 @@ block content
                   input#q5a2(type='radio', name='q5a', value='斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘', required='')
                   | 斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q6')
                 | 进入了别人的村落 看到没有锁的箱子 我应该？
                 textarea#q6(name='q6a', cols='50', rows='5', required='')
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q7')
                 | 那个人的建筑物上有漂亮的钻石块，我还缺很多钻石工具 我应该？
                 textarea#q7(name='q7a', cols='50', rows='5', required='')
           br
-          .row
-            .large-12.columns
+          .form-group
+            .col-lg-12
               label(for='q8')
                 | 遇到了自然村庄，我会？
                 textarea#q8(name='q8a', cols='50', rows='5', required='')
         br
-        .row
-          .large-12.columns
+        .form-group
+          .col-lg-12
             label(for='q9')
               | 如果没有通过审核，您的想法或行动
               textarea#q9(name='q9a', cols='50', rows='5', required='')
         br
-        .row
-          .large-12.columns
+        .form-group
+          .col-lg-12
             button.button(type='submit') 提交
 
   include modals/footer

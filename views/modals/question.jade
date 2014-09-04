@@ -13,11 +13,14 @@ mixin question(q)
       .form-group
         label.col-sm-2.control-label(for=q.name)= q.topic
         .col-sm-10
-          input#inputEmail3.form-control(type='email', placeholder='Email')
+          input.form-control(id=q.name, type='text', placeholder='')
           span.help-block= q.help
 
     default
 
 
 //- Use
-//- +question({})
+//-
+  +question({
+    type: 'text'
+  })

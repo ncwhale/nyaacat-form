@@ -1,10 +1,13 @@
 {
   "name": "nyaacat-form",
-  "version": "0.0.2",
-  "private": true,
+  "version": "0.0.3",
+  "description": "It's a minecraft admin manage web frontend",
+  "keywords": ["minecraft"],
+  "private": false,
+  "main":"app.coffee",
   "scripts": {
     "start": "node ./bin/www",
-    "build": "sh ./bin/build"
+    "prestart": "sh ./bin/build"
   },
   "dependencies": {
     "stylus": "~0.47.3",

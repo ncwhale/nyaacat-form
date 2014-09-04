@@ -6,7 +6,7 @@ class Question
     defaults =
       name: ''      #表单内对该题目的命名，guid 或 随机 Q_xxxxxxxx
       type: 'text'  #默认Text是一个单行文本问题
-      need: true    #题目是否必答
+      required: true #题目是否必答
       topic: '提问' #题目
       help: '这是一个问题哦喵~' #问题描述
       options: []
@@ -27,6 +27,6 @@ class Question
     @type = options.type ? defaults.type
     @help = options.help ? defaults.help
     @options = options.options ? defaults.options
-    @need = options.need ? defaults.need
+    @required = options.required ? defaults.required
 
 module.exports = Question
