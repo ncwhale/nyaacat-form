@@ -1,9 +1,25 @@
 extends modals/layout
 
-
 block content
   //- req: request from user. need track post data.
-  h1= message
-  h2= error.status
-  p #{error.stack}
-  p= //- raw output
+  h1= title
+
+  h3 Request params
+  ul
+    each v,i in params
+      li= i + ":" + v
+
+  h3 Request query
+  ul
+    each v,i in query
+      li= i + ":" + v
+
+  h3 Request route
+  ul
+    each v,i in route
+      li= i + ":" + v
+
+  h3 Request cookies
+  ul
+    each v,i in cookies
+      li= i + ":" + v
