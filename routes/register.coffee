@@ -4,8 +4,7 @@ router = express.Router()
 
 #Router for view page.
 router.get '/', (req, res)->
-  res.render 'register',
-    title: 'Minecraft 服务器「喵窝」白名单申请'
+  res.render 'register'
   return
 
 router.post '/', (req, res)->
