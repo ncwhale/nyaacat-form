@@ -5,7 +5,6 @@ debug = require('debug')('minecraft');
 #TODO: 使用 when 和 rest 
 #When = require 'when'
 
-
 class Minecraft 
   constructor: (@options = {}) ->
     defaults =
@@ -36,6 +35,7 @@ class Minecraft
 
   call: (method, args, cb, tag = null) ->
     if typeof args is "function"
+      tag = cb
       cb = args
       args = null
       
@@ -44,7 +44,8 @@ class Minecraft
     request url, (err, res, body) ->
       try
         body = JSON.parse(body)
-        body = body[0] if body.length == 1 and typeof body is 'object'
+        body = body[0] if body.length == 1 and (body instanceof Array)
+        debug "Got respond: #{typeof body}"
       catch e
         debug "Could not parse: #{body}"
 
