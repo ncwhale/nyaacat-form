@@ -1,10 +1,11 @@
-#index.coffee
+#routes/index.coffee
 fs = require 'fs'
 path = require 'path'
 express = require("express")
-debug = require('debug')('app::route');
+debug = require('debug')('app::route')
 
-config = require '../config'
+#remove unused config, make it more useable.
+#config = require '../config'
 
 router = express.Router
   caseSensitive: true

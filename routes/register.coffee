@@ -1,4 +1,5 @@
-#
+# get: render page
+# post: init a request for register
 express = require 'express'
 router = express.Router()
 

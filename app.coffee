@@ -2,15 +2,15 @@ express = require("express")
 path = require("path")
 favicon =  require('serve-favicon')
 logger = require("morgan")
-#cookieParser = require("cookie-parser")
-session = require('cookie-session')
+session = require 'express-session'
+session_store = require('connect-mongo')(session)
 bodyParser = require("body-parser")
 stylus = require('stylus')
 debug = require('debug')('app');
 
 config = require './config'
-routes = require './routes'
 models = require './models'
+routes = require './routes'
 
 app = express()
 
@@ -20,6 +20,7 @@ app.set "view engine", "jade"
 
 # env setup
 app.set 'port', config.express.port ? 3000
+app.set 'env', 'production'
 app.set 'env', 'development' if config.express.develop?
 
 # static res
@@ -31,7 +32,12 @@ app.use express.static(path.join(__dirname, "public"))
 app.use logger(config.express.logger ? 'dev')
 app.use bodyParser.json()
 app.use bodyParser.urlencoded config.express.urlencoded
-app.use session config.express.session
+app.use session
+  secret: config.express.session.secret
+  resave: false
+  saveUninitialized: false
+  store: new session_store
+    url: config.mongodb
 
 app.use routes
 
