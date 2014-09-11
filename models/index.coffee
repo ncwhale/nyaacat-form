@@ -3,7 +3,11 @@ fs = require 'fs'
 path = require 'path'
 mongoose = require 'mongoose'
 debug = require('debug')('app::model')
- 
+
+#TODO: Find a better way.
+config = require '../config'
+mongoose.connect config.mongodb
+
 models = {}
 selfname = path.basename __filename
 
