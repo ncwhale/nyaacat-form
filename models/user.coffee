@@ -5,6 +5,7 @@ When = require 'when'
 node_ = require 'when/node'
 
 Schema = mongoose.Schema
+models = mongoose.models
 
 #salt function
 generate_salt = (info...)->
@@ -20,37 +21,36 @@ salt_password = (password, salt) ->
   hash.digest('hex')
 
 userSchema = new Schema
-  username: String
+  mail: String
+  nickname: String
   password: String #with salt and hashed
   salt: Buffer
-  nickname: String
-  mail: String
 
 userSchema.index
-  username : 1
+  mail : 1
+, 
+  unique: true
+  sparse: true
 
-userSchema.statics.findByName = (username)->
+userSchema.statics.findByMail = (mail)->
   When.promise (resolve, reject, notify)->
-    console.log mongoose.Use
-    mongoose.models.User.findOne
-      username: username
+    models.User.findOne
+      mail: mail
     , (err, user)->
       if !err
         resolve user
       else
         reject err
 
+userSchema.statics.randomPassword = ()->
+  random_password = crypto.randomBytes(12).toString('base64')
+
 userSchema.methods.updateSalt = (info...)->
-  salt = generate_salt.apply null, info
-  @set 'salt', salt
+  @set 'salt', generate_salt.apply null, info
 
 userSchema.methods.updatePassword = (newPassword)->
   if @isSelected 'salt'
-    password = salt_password newPassword, @get('salt')
-    @set 'password', password
-
-userSchema.methods.randomPassword = ()->
-  random_password = crypto.randomBytes(12).toString('base64')
+    @set 'password', salt_password newPassword, @get('salt')
 
 userSchema.methods.checkPassword = (password)->
   if @isSelected('salt') and @isSelected('password')

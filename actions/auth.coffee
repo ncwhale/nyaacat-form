@@ -18,27 +18,24 @@ auth =
     When.promise (resolve, reject, notify)->
       #Check the user fields must there.
       user = new models.User userinfo
-      password = userinfo.password
-      reject new Error 'No username' if !user.username?
       reject new Error 'No Email' if !user.mail?
+      
+      userinfo.password = models.User.randomPassword if !userinfo.password?
 
-      #Check if the same username was used already
-      models.User.findByName user.username
-      .done (old_user)->
-        reject new Error 'Already Exists.' if old_user?
+      #create a random salt for this user.
+      user.updateSalt "#{new Date()}", user.mail
+      #then update password if needed.
+      user.updatePassword password
 
-        #create a random salt for this user.
-        user.updateSalt "#{new Date()}"
-        #then update password if needed.
-        password = user.randomPassword if !user.password?
-        user.updatePassword password
-        user.save 
-        
-      , (err)->
-        reject err
+      user.save (err)->
+        if !err
+          resolve userinfo
+        else
+          reject err
+        return
 
   login: (username, password)->
-    models.User.findByName(username).then (user)->
+    models.User.findByMail(username).then (user)->
       if user.checkPassword password
         return user
       else
