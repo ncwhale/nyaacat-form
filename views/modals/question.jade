@@ -16,9 +16,23 @@ mixin question(q)
     when 'text'
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
+          .help-block= q.help
         .col-sm-4
           input.form-control(id=q.name, name=q.name, type='text', placeholder='')
+
+    when 'email'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic
           .help-block= q.help
+        .col-sm-4
+          input.form-control(id=q.name, name=q.name, type='email', placeholder='@')
+
+    when 'url'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic
+          .help-block= q.help
+        .col-sm-4
+          input.form-control(id=q.name, name=q.name, type='url', placeholder='http://')
 
     when 'textarea'
       .form-group
@@ -29,10 +43,29 @@ mixin question(q)
 
     when 'radio'
       .form-group
-        label.col-sm-4.control-label(for=q.name)= q.topic          
+        label.col-sm-4.control-label(for=q.name)= q.topic
         .col-sm-8
          each option in q.options
           .radio
             label
               input(type='radio', name=q.name, value=option, required=q.required)
               = option
+
+    when 'check'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic
+        .col-sm-8
+         each option,index in q.options
+          .checkbox
+            label
+              input(type='checkbox', name=q.name+'_'+index, value=option)
+              =option
+
+    when 'multi'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic
+        .col-sm-8
+          select.form-control(multiple)
+           each option in q.options
+            option= option
+
