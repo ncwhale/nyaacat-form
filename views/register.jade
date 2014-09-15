@@ -117,14 +117,15 @@ block content
                   label(for='q2a3')
                     input#q2a3(type='radio', name='q2a', value='直接找个地方开造', required)
                     | 直接找个地方开造
-            br
             .form-group
-              .col-lg-12
-                label(for='q3')
-                  | 看到了很有意思的建筑，但是找不到入口或门打不开，应该...?
+              label.col-sm-4.control-label(for='q3')
+                | 看到了很有意思的建筑，但是找不到入口或门打不开，应该...?
+              .col-sm-8
+                .radio
                   label(for='q3a1')
                     input#q3a1(type='radio', name='q3a', value='尝试联系负责玩家请求进入', required)
                     | 尝试联系负责玩家请求进入
+                .radio
                   label(for='q3a2')
                     input#q3a2(type='radio', name='q3a', value='看起来附近没人，我挖进去', required)
                     | 看起来附近没人，我挖进去
@@ -180,5 +181,3 @@ block content
               button.button(type='submit') 提交
 
   include modals/footer
-  
-                textarea.form-control#sthtosay(name='sthtosay', cols='50', rows='6')

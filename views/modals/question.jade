@@ -7,14 +7,29 @@
     check: 打勾
     email: 邮件
     url:   网址
+
 mixin question(q)
+  //- Add a * for required questions
+  if q.required
+   - q.topic += ' *' 
   case q.type
     when 'text'
       .form-group
-        label.col-sm-2.control-label(for=q.name)= q.topic
-        .col-sm-10
-          input.form-control(id=q.name, type='text', placeholder='')
-          span.help-block= q.help
+        label.col-sm-4.control-label(for=q.name)= q.topic
+        .col-sm-4
+          input.form-control(id=q.name, name=q.name, type='text', placeholder='')
+          .help-block= q.help
+
+    when 'radio'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic          
+        .col-sm-8
+         each option in q.options
+          .radio
+            label
+              input(type='radio', name=q.name, value=option, required=q.required)
+              = option
+              
 
     default
 

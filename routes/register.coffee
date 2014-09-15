@@ -13,4 +13,4 @@ router.post '/', (req, res)->
   return
 
 module.exports = router
-#module.exports.path = 'register'
+

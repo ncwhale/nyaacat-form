@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 crypto = require 'crypto'
 config = require '../config'
 When = require 'when'
-node_ = require 'when/node'
+
 
 Schema = mongoose.Schema
 models = mongoose.models
