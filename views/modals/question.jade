@@ -20,6 +20,13 @@ mixin question(q)
           input.form-control(id=q.name, name=q.name, type='text', placeholder='')
           .help-block= q.help
 
+    when 'textarea'
+      .form-group
+        label.col-sm-4.control-label(for=q.name)= q.topic
+          .help-block= q.help
+        .col-sm-8
+          textarea.form-control(id=q.name, name=q.name, cols='50', rows='6', required=q.required)
+
     when 'radio'
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic          
@@ -29,13 +36,3 @@ mixin question(q)
             label
               input(type='radio', name=q.name, value=option, required=q.required)
               = option
-              
-
-    default
-
-
-//- Use
-//-
-  +question({
-    type: 'text'
-  })

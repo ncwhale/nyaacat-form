@@ -5,3 +5,11 @@
 # 4.Send success/fail mail.
 #
 
+whitelist =
+  generate_questions: ()->
+
+  verify_email: (req, whitelist, next)->
+    req.session.verify_whitelist = whitelist.id
+    
+
+module.exports = whitelist

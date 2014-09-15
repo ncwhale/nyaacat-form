@@ -3,7 +3,6 @@ crypto = require 'crypto'
 config = require '../config'
 When = require 'when'
 
-
 Schema = mongoose.Schema
 models = mongoose.models
 

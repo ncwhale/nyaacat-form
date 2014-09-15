@@ -3,7 +3,7 @@ require('coffee-script');
 require('coffee-script/register');
 
 var debug = require('debug')('www');
-var app = require('../app');
+var app = require('../app.coffee');
 
 var port = app.get('port');
 if (typeof port === "undefined" || port === null) {

@@ -8,6 +8,8 @@ block script
     :coffee
       requirejs ['model/register']
 
+include modals/question
+
 block content
   include modals/header
   .container
@@ -21,7 +23,7 @@ block content
                 | 游戏 ID *
               .col-sm-4
                 input.form-control#gameid(type="text", name="gameid", required, placeholder="")
-                .help-block 注册游戏时所用的 ID，必填，仅限英文数字喵～。
+                .help-block 注册游戏时所用的 ID，必填，仅限英文数字喵～
                 small.error 请填写游戏 ID
             .form-group
               label.col-sm-4.control-label
@@ -62,12 +64,7 @@ block content
                 .help-block 简单介绍自己，任何方面均可。不可以是空泛无意义的话。不填则不会通过。
               .col-sm-8
                 textarea.form-control#selfintro(name='selfIntro', cols='50', rows='6', required)
-            .form-group
-              label.col-sm-4.control-label(for='sthtosay')
-                | 想说的话
-                .help-block 有什么想对管理组说的？ 
-              .col-sm-8
-                textarea.form-control#sthtosay(name='sthtosay', cols='50', rows='6')
+            +question({type:'textarea', required: false, name: 'sthtosay', topic: '想说的话', help: '有什么想对管理组说的？ '})
           fieldset
             legend Minecraft 服务器 「喵窝」 白名单权限申请表 - 验证问题页
             .form-group
@@ -85,97 +82,33 @@ block content
                 | 「喵窝」服务器中去往矿界的命令是？
               .col-sm-4
                 input.form-control#epiccmd(type='text', name='epiccmd', required)
-            .form-group
-              label.col-sm-4.control-label(for='q1')
-                | 首次登录时因为网络问题掉进虚空，应该怎么办？
-              .col-sm-8
-                .radio
-                  label(for='q1a1')
-                    input#q1a1(type='radio', name='q1a', value='我要保装备，快速按下收费的 /home 或 /spawn 返回出生点', required)
-                    | 我要保装备，快速按下收费的 /home 或 /spawn 返回出生点
-                .radio
-                  label(for='q1a2')
-                    input#q1a2(type='radio', name='q1a', value='什么都不做，重生后使用出生点附近的重置木牌来再次获取新人装备', required)
-                    | 什么都不做，重生后使用出生点附近的重置木牌来再次获取新人装备
-                .radio
-                  label(for='q1a3')
-                    input#q1a3(type='radio', name='q1a', value='在服内用力发牢骚', required)
-                    | 在服内用力发牢骚
-            .form-group
-              label.col-sm-4.control-label(for='q2')
-                | 我(或和其他玩家一起)想要使用大片土地建立村落，应该...?
-              .col-sm-8
-                .radio
-                  label(for='q2a1')
-                    input#q2a1(type='radio', name='q2a', value='在社群向管理组申请建立村落，并按要求附上村落NW-SE范围坐标、村落名称、负责玩家和建设计划', required)
-                    | 在社群向管理组申请建立村落，并按要求附上村落NW-SE范围坐标、村落名称、负责玩家和建设计划
-                .radio
-                  label(for='q2a2')
-                    input#q2a2(type='radio', name='q2a', value='用力刷围栏等方块，圈出大片土地，这块地方就是我的了', required)
-                    | 用力刷围栏等方块，圈出大片土地，这块地方就是我的了
-                .radio
-                  label(for='q2a3')
-                    input#q2a3(type='radio', name='q2a', value='直接找个地方开造', required)
-                    | 直接找个地方开造
-            .form-group
-              label.col-sm-4.control-label(for='q3')
-                | 看到了很有意思的建筑，但是找不到入口或门打不开，应该...?
-              .col-sm-8
-                .radio
-                  label(for='q3a1')
-                    input#q3a1(type='radio', name='q3a', value='尝试联系负责玩家请求进入', required)
-                    | 尝试联系负责玩家请求进入
-                .radio
-                  label(for='q3a2')
-                    input#q3a2(type='radio', name='q3a', value='看起来附近没人，我挖进去', required)
-                    | 看起来附近没人，我挖进去
-            br
-            .form-group
-              .col-lg-12
-                label(for='q4')
-                  | 走到半路看到了铁路，但是太高上不去，要怎么办？
-                  label(for='q4a1')
-                    input#q4a1(type='radio', name='q4a', value='沿着铁路走，在就进的车站或其他预留的入口或隧道上方进入', required)
-                    | 沿着铁路走，在就进的车站或其他预留的入口或隧道上方进入
-                  label(for='q4a2')
-                    input#q4a2(type='radio', name='q4a', value='挖一堆泥土石头，用方块堆叠的方式跳进去', required)
-                    | 挖一堆泥土石头，用方块堆叠的方式跳进去
-            br
-            .form-group
-              .col-lg-12
-                label(for='q5')
-                  | 在矿界挖矿时，应该？
-                  label(for='q5a1')
-                    input#q5a1(type='radio', name='q5a', value='随便找个地方或别人挖过的矿道，见到想要的矿石就挖走，反正有 /home 不抖', required)
-                    | 随便找个地方或别人挖过的矿道，见到想要的矿石就挖走，反正有 /home 不抖
-                  label(for='q5a2')
-                    input#q5a2(type='radio', name='q5a', value='斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘', required)
-                    | 斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘
-            br
-            .form-group
-              .col-lg-12
-                label.col-sm-4.control-label(for='q6')
-                  | 进入了别人的村落 看到没有锁的箱子 我应该？
-                  textarea.form-control#q6(name='q6a', cols='50', rows='5', required)
-            br
-            .form-group
-              .col-lg-12
-                label.col-sm-4.control-label(for='q7')
-                  | 那个人的建筑物上有漂亮的钻石块，我还缺很多钻石工具 我应该？
-                  textarea.form-control#q7(name='q7a', cols='50', rows='5', required)
-            br
-            .form-group
-              .col-lg-12
-                label.col-sm-4.control-label(for='q8')
-                  | 遇到了自然村庄，我会？
-                  textarea.form-control#q8(name='q8a', cols='50', rows='5', required)
-          br
-          .form-group
-            .col-lg-12
-              label.col-sm-4.control-label(for='q9')
-                | 如果没有通过审核，您的想法或行动
-                textarea.form-control#q9(name='q9a', cols='50', rows='5', required)
-          br
+            +question({type: 'radio', required: true, name: 'q1', topic: '首次登录时因为网络问题掉进虚空，应该怎么办？', options:[
+              '我要保装备，快速按下收费的 /home 或 /spawn 返回出生点',
+              '什么都不做，重生后使用出生点附近的重置木牌来再次获取新人装备',
+              '在服内用力发牢骚'
+            ]})
+            +question({type: 'radio', required: true, name: 'q2', topic: '我(或和其他玩家一起)想要使用大片土地建立村落，应该...?', options:[
+              '在社群向管理组申请建立村落，并按要求附上村落NW-SE范围坐标、村落名称、负责玩家和建设计划',
+              '用力刷围栏等方块，圈出大片土地，这块地方就是我的了',
+              '直接找个地方开造'
+            ]})
+            +question({type: 'radio', required: true, name: 'q3', topic: '看到了很有意思的建筑，但是找不到入口或门打不开，应该...?', options:[
+              '尝试联系负责玩家请求进入',
+              '看起来附近没人，我挖进去'
+            ]})
+            +question({type: 'radio', required: true, name: 'q4', topic: '走到半路看到了铁路，但是太高上不去，要怎么办？', options:[
+              '沿着铁路走，在就进的车站或其他预留的入口或隧道上方进入',
+              '挖一堆泥土石头，用方块堆叠的方式跳进去'
+            ]})
+            +question({type: 'radio', required: true, name: 'q5', topic: '在矿界挖矿时，应该？', options:[
+              '随便找个地方或别人挖过的矿道，见到想要的矿石就挖走，反正有 /home 不抖',
+              '斜下方或旋转式向下挖掘，在必要位置建立落脚点存放物品箱子和熔炉等，以便下次再来挖掘'
+            ]})
+
+            +question({type: 'textarea', required: true, name: 'q6', topic: '进入了别人的村落 看到没有锁的箱子 我应该？'})
+            +question({type: 'textarea', required: true, name: 'q7', topic: '那个人的建筑物上有漂亮的钻石块，我还缺很多钻石工具，我应该？'})
+            +question({type: 'textarea', required: true, name: 'q8', topic: '遇到了自然村庄，我会？'})
+            +question({type: 'textarea', required: true, name: 'q9', topic: '如果没有通过审核，您的想法或行动'})
           .form-group
             .col-lg-12
               button.button(type='submit') 提交
