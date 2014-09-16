@@ -23,6 +23,11 @@ app.set 'port', config.express.port ? 3000
 app.set 'env', 'production'
 app.set 'env', 'development' if config.express.develop?
 
+#Use nginx for frontend.
+if app.get 'env' == 'production'
+  config.express.session.secure = true
+  app.set 'trust proxy', 1
+
 # static res
 app.use favicon(path.join(__dirname, 'public/ico/favicon.ico'))
 app.use stylus.middleware(path.join(__dirname , 'public'))
@@ -34,6 +39,8 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded config.express.urlencoded
 app.use session
   secret: config.express.session.secret
+  cookie:
+    secure: config.express.session.secure ? false
   resave: false
   saveUninitialized: false
   store: new session_store

@@ -1,49 +1,48 @@
 mongoose = require 'mongoose'
-crypto = require 'crypto'
-config = require '../config'
 When = require 'when'
 
 Schema = mongoose.Schema
 models = mongoose.models
 
-whitelistSchema = new Schema
+clientSchema = new Schema
   mail: String
   gameid: String
-  mailverify: Bool
-  logs: [{String}]
+  mailverify: Boolean
+  logs: [ String ]
+  ips: [ String ]
 ,
   strict: false
 
-whitelistSchema.index
+clientSchema.index
   mail : 1
 ,
   unique: true
   sparse: true
 
-whitelistSchema.index
+clientSchema.index
   gameid : 1
 ,
   unique: true
   sparse: true
 
-whitelistSchema.statics.findByGameid = (gameid)->
+clientSchema.statics.findByGameid = (gameid)->
   When.promise (resolve, reject, notify)->
-    models.User.findOne
+    models.Client.findOne
       gameid: gameid
-    , (err, user)->
+    , (err, client)->
       if !err
-        resolve user
+        resolve client
       else
         reject err
   
-whitelistSchema.statics.findByMail = (mail)->
+clientSchema.statics.findByMail = (mail)->
   When.promise (resolve, reject, notify)->
-    models.User.findOne
+    models.Client.findOne
       mail: mail
-    , (err, user)->
+    , (err, client)->
       if !err
-        resolve user
+        resolve client
       else
         reject err
 
-module.exports = mongoose.model 'Whitelist', userSchema
+module.exports = mongoose.model 'Client', clientSchema

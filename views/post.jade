@@ -14,12 +14,16 @@ block content
     each v,i in query
       li= i + ":" + v
 
+  h3 Request body
+  ul
+    each v,i in body
+      li= i + ":" + v
   h3 Request route
   ul
     each v,i in route
       li= i + ":" + v
 
-  h3 Request cookies
-  ul
+  //- h3 Request cookies
+   ul
     each v,i in cookies
       li= i + ":" + v

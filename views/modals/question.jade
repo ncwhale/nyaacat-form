@@ -45,7 +45,7 @@ mixin question(q)
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
         .col-sm-8
-         each option in q.options
+         each option in q.choices
           .radio
             label
               input(type='radio', name=q.name, value=option, required=q.required)
@@ -55,7 +55,7 @@ mixin question(q)
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
         .col-sm-8
-         each option,index in q.options
+         each option,index in q.choices
           .checkbox
             label
               input(type='checkbox', name=q.name+'_'+index, value=option)
@@ -66,6 +66,6 @@ mixin question(q)
         label.col-sm-4.control-label(for=q.name)= q.topic
         .col-sm-8
           select.form-control(multiple)
-           each option in q.options
+           each option in q.choices
             option= option
 
