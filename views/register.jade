@@ -67,8 +67,8 @@ block content
             +question({type:'textarea', required: false, name: 'sthtosay', topic: '想说的话', help: '有什么想对管理组说的？ '})
           fieldset
             legend Minecraft 服务器 「喵窝」 白名单权限申请表 - 验证问题页
-              each q in questions
-                +question(q)
+            each q in questions
+              +question(q)
 
           .form-group
             .col-lg-12
