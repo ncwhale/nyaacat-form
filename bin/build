@@ -1,4 +1,4 @@
 #!/bin/sh
 
 coffee -bcm --no-header -o ./public/js ./public/coffee
-coffee -bcm --no-header -o ./views ./views
+coffee -bc --no-header -o ./views ./views

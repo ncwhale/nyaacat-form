@@ -9,6 +9,7 @@ make_queue_rule = (objs)->
 #Router for view page.
 router.get '/', (req, res)->
   req.session.starttime ?= new Date()
+  req.session.ip = req.ip
   req.session.ips = req.ips
   res.render 'register',
     questions: qa.get()

@@ -1,6 +1,8 @@
 config = require '../config'
 models = require '../models'
 
+email_verify = /^([&'+\-\d=_a-z]+(?:\.[&'+\-\d=_a-z]+)*)@((?:[\da-z](?:[-\da-z]*[\da-z])?\.)+[a-z][-a-z]*[a-z])$/i
+
 auth =
   check_session: (req, res, next)->
     if req.session?.uid?
@@ -19,6 +21,7 @@ auth =
       #Check the user fields must there.
       user = new models.User userinfo
       reject new Error 'No Email' if !user.mail?
+      reject new Error 'Email address is not current' unless email_verify.test user.mail
       
       userinfo.password = models.User.randomPassword if !userinfo.password?
 
@@ -40,7 +43,5 @@ auth =
         return user
       else
         throw new Error 'Spam User.'
-        
-    
-      
+
 module.exports = auth
