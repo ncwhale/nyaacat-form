@@ -14,14 +14,23 @@ block content
     each v,i in query
       li= i + ":" + v
 
-  h3 Request body
-  ul
-    each v,i in body
-      li= i + ":" + v
-  h3 Request route
-  ul
-    each v,i in route
-      li= i + ":" + v
+  if typeof(body) != 'undefined' && body
+    h3 Request body
+    ul
+      each v,i in body
+        li= i + ":" + v
+
+  if typeof(session) != 'undefined'
+    h3 Request session
+    ul
+      each v,i in session
+        li= i + ":" + v
+
+  //-
+    h3 Request route
+    ul
+      each v,i in route
+        li= i + ":" + v
 
   //- h3 Request cookies
    ul
