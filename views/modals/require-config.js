@@ -18,5 +18,3 @@ require.config({
     }
   }
 });
-
-//# sourceMappingURL=require-config.map
