@@ -11,6 +11,10 @@
     "start": "node ./bin/www",
     "prestart": "sh ./bin/build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ncwhale/nyaacat-form.git"
+  },
   "dependencies": {
     "body-parser": "~1.6.5",
     "coffee-script": "~1.7.1",
