@@ -1,5 +1,9 @@
 extends modals/simple-layout
 
+block prerender
+  - if (title == null) { title = message; }
+  - if (error.status == null) {  error.status = 500; }
+
 block content
   h1= message
   h2= error.status
