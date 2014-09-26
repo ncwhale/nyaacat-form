@@ -2,6 +2,7 @@ extends modals/simple-layout
 
 block prerender
   - if (title == null) { title = message; }
+  - if (error == null) { error = { message: message, stack: [], status: 500 } }
   - if (error.status == null) {  error.status = 500; }
 
 block content
