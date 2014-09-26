@@ -14,19 +14,23 @@ routes = require './routes'
 
 app = express()
 
+# load settings 
+for k,v of config.express.settings
+  app.set k, v
+
 # view engine setup
 app.set "views", path.join(__dirname, config.express.views ? "views")
-app.set "view engine", "jade"
+#app.set "view engine", "jade"
 
 # env setup
-app.set 'port', config.express.port ? 3000
+#app.set 'port', config.express.port ? 3000
 app.set 'env', 'production'
 app.set 'env', 'development' if config.express.develop?
 
 #Use nginx for frontend.
 if app.get 'env' == 'production'
   config.express.session.secure = true
-  app.set 'trust proxy', 1
+  app.set 'trust proxy', 'loopback' unless app.get 'trust proxy'
 
 # static res
 app.use favicon(path.join(__dirname, 'public/ico/favicon.ico'))

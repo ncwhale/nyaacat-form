@@ -1,7 +1,11 @@
 config = 
   express:
+    settings:
+      "trust proxy": "loopback"
+      "view engine": "jade"
+      port:     3000
+
     logger:   'tiny'
-    port:     3000
     views:    'views'
     session:
       name:   'nyan'
