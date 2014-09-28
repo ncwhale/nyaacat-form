@@ -41,14 +41,14 @@ class Mailer
 
   sendmail: (options) ->
     When.promise (resolve, reject, notify)=>
-      debug options.sender, @[options.sender]
-      debug @
       reject new Error 'Sender not configured.' unless @[options.sender]?
 
       if options.template?
         notify 'compile html'
-        options.html = jade.renderFile path.join(@options.template.path, "#{options.template}.#{@options.template.engine}") , options.data ? options
-        debug options.html
+        try
+          options.html = jade.renderFile path.join(@options.template.path, "#{options.template}.#{@options.template.engine}") , options.data ? options
+        catch e
+          reject e
 
       for k,v of @[options.sender]['options']
         options[k] = v unless options[k]?
