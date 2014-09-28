@@ -3,6 +3,9 @@ extends modals/layout
 block prerender
   - title = "「喵窝」白名单申请"
 
+block style
+  link(rel='stylesheet', href='/css/bootstrapValidator.min.css')
+
 block script
   script(src="js/lib/require.js")
   script
@@ -17,49 +20,63 @@ block content
   .container
     .row
       .col-xs-12
-        form.form-horizontal(role="form", data-abide='', method='post', novalidate)
+        form#register-form.form-horizontal(role="form", data-abide='', method='post', novalidate)
           fieldset
             legend Minecraft 服务器 「喵窝」 白名单申请表 - 个人信息页
             .form-group
               label.col-sm-4.control-label
                 | 游戏 ID *
               .col-sm-4
-                input.form-control#gameid(type="text", name="gameid", required, placeholder="")
+                input.form-control#gameid(type="text", name="gameid", required, placeholder="",
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="游戏ID不能留空喵~",
+                                data-bv-stringlength="true",
+                                data-bv-stringlength-min="2"
+                                data-bv-stringlength-max="30",
+                                data-bv-stringlength-message="游戏ID应该有2~30字符喵~",
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[a-zA-Z0-9]+$"
+                                data-bv-regexp-message="游戏ID应该只包含字母和数字，不区分大小写喵~")
                 .help-block 注册游戏时所用的 ID，必填，仅限英文数字喵～
-                small.error 请填写游戏 ID
             .form-group
               label.col-sm-4.control-label
                 | 邮件地址 *
               .col-sm-4
-                input.form-control(type='email', name='email', required)
+                input.form-control(type='email', name='email', required
+                  data-bv-notempty="true"
+                  data-bv-notempty-message="邮箱地址不能不填喵~"
+                  data-bv-emailaddress="true"
+                  data-bv-emailaddress-message="这个看上去好像不是邮箱地址喵?")
                 .help-block 请填写真实有效的邮件地址，稍后将会验证并返回申请结果，您的所有隐私将被保密。
-                small.error 请填写邮件地址
             .form-group
               label.col-sm-4.control-label
                 | 受邀途径 *
               .col-sm-4
-                input.form-control(type='text', name='referal', required)
+                input.form-control(type='text', name='referal', required
+                  data-bv-notempty='true'
+                  data-bv-notempty-message="告诉人家怎么知道这里的喵~")
                 .help-block 从何处听说喵窝(网站/帖子地址、邀请人游戏 ID 等)？必填。
-                small.error 请填写受邀途径
             .form-group
               label.col-xs-4.control-label(for='accountType')
                 | 帐号状态 *
                 .help-block 是否为正版用户？
               .col-xs-8
                 label.radio-inline
-                  input#accountType1(type='radio', name='accountType', value='legal', required)
+                  input#accountType1(type='radio', name='accountType', value='legal', required
+                    data-bv-notempty="true"
+                    data-bv-notempty-message="不能空着啦喵~"
+                  )
                   | 正版
                 label.radio-inline
                   input#accountType2(type='radio', name='accountType', value='illegal', required)
                   | 非正版
                 br
-                small.error 请选择帐号状态
             .form-group
               label.col-sm-4.control-label
                 | 个人主页地址
               .col-sm-4
                 input.form-control(type='url', name='homepage', placeholder='http://')
-                .help-block 包括但不限于 Github, Google+, Twitter... 选填，
+                .help-block 包括但不限于 Github, Google+, Twitter... 选填。
             .form-group
               label.col-sm-4.control-label(for='selfintro')
                 | 自我介绍

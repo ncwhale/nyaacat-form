@@ -33,6 +33,7 @@
     "request": "~2.40.0",
     "serve-favicon": "~2.0.1",
     "stylus": "~0.47.3",
+    "validator": "^3.19.0",
     "when": "~3.4.4"
   }
 }

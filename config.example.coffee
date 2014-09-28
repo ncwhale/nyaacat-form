@@ -4,7 +4,6 @@ config =
       "trust proxy": "loopback"
       "view engine": "jade"
       port:     3000
-
     logger:   'tiny'
     views:    'views'
     session:

@@ -11,6 +11,11 @@ require.config
     model: '..'
     jquery: 'jquery-2.1.1.min'
     bootstrap: 'bootstrap.min'
+    validator: 'validator.min'
+    bootstrap_validator: 'bootstrapValidator/bootstrapValidator.min'
+    bv_lang: 'bootstrapValidator/language'
   shim:
     bootstrap:
       deps: ['jquery']
+    bootstrap_validator:
+      deps: ['bootstrap']
