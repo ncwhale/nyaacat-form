@@ -5,6 +5,7 @@ block prerender
 
 block style
   link(rel='stylesheet', href='/css/bootstrapValidator.min.css')
+  style
 
 block script
   script(src="js/lib/require.js")
@@ -29,33 +30,33 @@ block content
               .col-sm-4
                 input.form-control#gameid(type="text", name="gameid", required, placeholder="",
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="游戏ID不能留空喵~",
+                                data-bv-notempty-message="游戏ID不能留空喵～",
                                 data-bv-stringlength="true",
                                 data-bv-stringlength-min="2"
                                 data-bv-stringlength-max="30",
-                                data-bv-stringlength-message="游戏ID应该有2~30字符喵~",
+                                data-bv-stringlength-message="游戏ID应该有2~30字符喵～",
                                 data-bv-regexp="true"
-                                data-bv-regexp-regexp="^[a-zA-Z0-9]+$"
-                                data-bv-regexp-message="游戏ID应该只包含字母和数字，不区分大小写喵~")
-                .help-block 注册游戏时所用的 ID，必填，仅限英文数字喵～
+                                data-bv-regexp-regexp="^[a-zA-Z0-9]+喵?～?$"
+                                data-bv-regexp-message="游戏ID应该只包含字母和数字，不区分大小写喵～")
+                .help-block 注册游戏时所用的 ID，必填，仅限　英文数字喵～
             .form-group
               label.col-sm-4.control-label
                 | 邮件地址 *
               .col-sm-4
                 input.form-control(type='email', name='email', required
                   data-bv-notempty="true"
-                  data-bv-notempty-message="邮箱地址不能不填喵~"
+                  data-bv-notempty-message="邮箱地址不能不填喵～"
                   data-bv-emailaddress="true"
-                  data-bv-emailaddress-message="这个看上去好像不是邮箱地址喵?")
-                .help-block 请填写真实有效的邮件地址，稍后将会验证并返回申请结果，您的所有隐私将被保密。
+                  data-bv-emailaddress-message="这个看上去好像不是邮箱地址喵？")
+                .help-block 请填写真实有效的邮件地址，您的所有隐私将被保密喵～
             .form-group
               label.col-sm-4.control-label
                 | 受邀途径 *
               .col-sm-4
                 input.form-control(type='text', name='referal', required
                   data-bv-notempty='true'
-                  data-bv-notempty-message="告诉人家怎么知道这里的喵~")
-                .help-block 从何处听说喵窝(网站/帖子地址、邀请人游戏 ID 等)？必填。
+                  data-bv-notempty-message="告诉人家怎么找到这里的喵～")
+                .help-block 从何处听说喵窝(网站/帖子地址、邀请人游戏 ID 等)？
             .form-group
               label.col-xs-4.control-label(for='accountType')
                 | 帐号状态 *
@@ -64,7 +65,7 @@ block content
                 label.radio-inline
                   input#accountType1(type='radio', name='accountType', value='legal', required
                     data-bv-notempty="true"
-                    data-bv-notempty-message="这里不能空着啦喵~"
+                    data-bv-notempty-message="这里不能空着喵~"
                   )
                   | 正版
                 label.radio-inline
@@ -76,14 +77,14 @@ block content
                 | 个人主页地址
               .col-sm-4
                 input.form-control(type='url', name='homepage', placeholder='http://')
-                .help-block 包括但不限于 Github, Google+, Twitter... 选填。
+                .help-block 包括但不限于 Github, Google+, Twitter... 喵～
             .form-group
               label.col-sm-4.control-label(for='selfintro')
                 | 自我介绍
-                .help-block 简单介绍自己，任何方面均可。不可以是空泛无意义的话。不填则不会通过。
+                .help-block 简单介绍自己，任何方面均可。不可以欺骗喵～否则挠脸喵～
               .col-sm-8
                 textarea.form-control#selfintro(name='selfIntro', cols='50', rows='6', required)
-            +question({type:'textarea', required: false, name: 'sthtosay', topic: '想说的话', help: '有什么想对管理组说的？ '})
+            +question({type:'textarea', required: false, name: 'sthtosay', topic: '想说的话', help: '有什么想对管理组说的喵？'})
           fieldset
             legend Minecraft 服务器 「喵窝」 白名单权限申请表 - 验证问题页
             each q in questions
