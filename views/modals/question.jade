@@ -18,21 +18,21 @@ mixin question(q)
         label.col-sm-4.control-label(for=q.name)= q.topic
           .help-block= q.help
         .col-sm-4
-          input.form-control(id=q.name, name=q.name, type='text', placeholder='')
+          input.form-control(id=q.name, name=q.name, type='text', placeholder='', required=q.required)
 
     when 'email'
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
           .help-block= q.help
         .col-sm-4
-          input.form-control(id=q.name, name=q.name, type='email', placeholder='@')
+          input.form-control(id=q.name, name=q.name, type='email', placeholder='@', required=q.required)
 
     when 'url'
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
           .help-block= q.help
         .col-sm-4
-          input.form-control(id=q.name, name=q.name, type='url', placeholder='http://')
+          input.form-control(id=q.name, name=q.name, type='url', placeholder='http://', required=q.required)
 
     when 'textarea'
       .form-group
@@ -58,14 +58,14 @@ mixin question(q)
          each option,index in q.choices
           .checkbox
             label
-              input(type='checkbox', name=q.name+'_'+index, value=option)
+              input(type='checkbox', name=q.name+'_'+index, value=option, required=(q.required))
               =option
 
     when 'multi'
       .form-group
         label.col-sm-4.control-label(for=q.name)= q.topic
         .col-sm-8
-          select.form-control(multiple)
+          select.form-control(multiple, required=q.required)
            each option in q.choices
             option= option
 
