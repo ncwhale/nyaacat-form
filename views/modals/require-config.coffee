@@ -19,3 +19,5 @@ require.config
       deps: ['jquery']
     bootstrap_validator:
       deps: ['bootstrap']
+    bv_lang:
+      deps: ['bootstrap_validator']
