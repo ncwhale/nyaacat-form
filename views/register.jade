@@ -5,7 +5,10 @@ block prerender
 
 block style
   link(rel='stylesheet', href='/css/bootstrapValidator.min.css')
-  style
+  style(type='text/css').
+    #register-form.form-horizontal .has-feedback .form-control-feedback{
+      top: 5px;
+    }
 
 block script
   script(src="js/lib/require.js")
@@ -61,7 +64,7 @@ block content
               label.col-xs-4.control-label(for='accountType')
                 | 帐号状态 *
                 .help-block 是否为正版用户？
-              .col-xs-8
+              .col-xs-4
                 label.radio-inline
                   input#accountType1(type='radio', name='accountType', value='legal', required
                     data-bv-notempty="true"

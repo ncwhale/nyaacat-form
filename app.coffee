@@ -8,6 +8,8 @@ bodyParser = require("body-parser")
 stylus = require('stylus')
 debug = require('debug')('app');
 
+debug 'App init'
+
 config = require './config'
 models = require './models'
 routes = require './routes'
