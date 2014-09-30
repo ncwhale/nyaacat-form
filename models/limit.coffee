@@ -16,6 +16,14 @@ limitSchema.index
 ,
   expireAfterSeconds: 0
 
+#Setup limit cannot repeat
+limitSchema.index
+  limit: 1
+,
+  unique: true
+  sparse: true
+  dropDups: true
+
 limitSchema.statics.findByLimit = (limit)->
   When.promise (resolve, reject, notify)->
     models.Limit.findOne
@@ -39,5 +47,18 @@ limitSchema.statics.findByLimits = (limits)->
         reject err ? new Error "No limit yet."
       return
 
+limitSchema.statics.testLimits = (limits)->
+  When.promise (resolve, reject, notify)->
+    if !limits? or limits.length < 1
+      resolve true
+      return
+    
+    models.Limit.collection.insert limits, (err)->
+      if !err 
+        resolve true
+      else
+        reject err
+      return
+    return
 
 module.exports = mongoose.model 'Limit', limitSchema

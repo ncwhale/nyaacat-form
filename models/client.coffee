@@ -17,13 +17,13 @@ clientSchema.index
   mail : 1
 ,
   unique: true
-  sparse: true
+  #sparse: true
 
 clientSchema.index
   gameid : 1
 ,
   unique: true
-  sparse: true
+  #sparse: true
 
 clientSchema.statics.findByGameid = (gameid)->
   When.promise (resolve, reject, notify)->
@@ -44,5 +44,16 @@ clientSchema.statics.findByMail = (mail)->
         resolve client
       else
         reject err
+
+clientSchema.statics.testIdEmail = (id, email)->
+  When.promise (resolve, reject, notify)->
+    models.Client.findOne
+      $or:[
+        mail: email
+        gameid: id
+      ]
+    , (err, client)->
+      
+  
 
 module.exports = mongoose.model 'Client', clientSchema
