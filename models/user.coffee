@@ -29,10 +29,9 @@ userSchema.index
   mail : 1
 , 
   unique: true
-  sparse: true
 
 userSchema.statics.findByMail = (mail)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)->
     models.User.findOne
       mail: mail
     , (err, user)->
@@ -42,7 +41,7 @@ userSchema.statics.findByMail = (mail)->
         reject err
 
 userSchema.statics.randomPassword = ()->
-  random_password = crypto.randomBytes(12).toString('base64')
+  crypto.randomBytes(12).toString('base64')
 
 userSchema.methods.updateSalt = (info...)->
   @set 'salt', generate_salt.apply null, info

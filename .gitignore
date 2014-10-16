@@ -11,6 +11,9 @@ pids
 \#*\#
 .\#*
 
+# Ignore WebStrom files
+.idea
+
 # Ignore Coffee Compile Map
 public/js/*.map
 views/modals/*.map

@@ -17,16 +17,14 @@ clientSchema.index
   mail : 1
 ,
   unique: true
-  #sparse: true
 
 clientSchema.index
   gameid : 1
 ,
   unique: true
-  #sparse: true
 
 clientSchema.statics.findByGameid = (gameid)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)-> #, notify
     models.Client.findOne
       gameid: gameid
     , (err, client)->
@@ -36,7 +34,7 @@ clientSchema.statics.findByGameid = (gameid)->
         reject err
   
 clientSchema.statics.findByMail = (mail)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)->
     models.Client.findOne
       mail: mail
     , (err, client)->
@@ -45,15 +43,20 @@ clientSchema.statics.findByMail = (mail)->
       else
         reject err
 
-clientSchema.statics.testIdEmail = (id, email)->
-  When.promise (resolve, reject, notify)->
-    models.Client.findOne
+clientSchema.statics.nonExistenceTest = (id, email)->
+  When.promise (resolve, reject)->
+    models.Client.collection.findOne
       $or:[
         mail: email
         gameid: id
       ]
     , (err, client)->
-      
+      if !err and (!client? or client.length == 0)
+        resolve true
+        return
+      else
+        reject err or "Client Duplicate"
+
   
 
 module.exports = mongoose.model 'Client', clientSchema

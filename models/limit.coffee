@@ -21,11 +21,11 @@ limitSchema.index
   limit: 1
 ,
   unique: true
-  sparse: true
+  #sparse: true
   dropDups: true
 
 limitSchema.statics.findByLimit = (limit)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)->
     models.Limit.findOne
       limit: limit
     , (err, limit)->
@@ -36,7 +36,7 @@ limitSchema.statics.findByLimit = (limit)->
       return
 
 limitSchema.statics.findByLimits = (limits)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)->
     models.Limit.findOne
       limit:
         $in: limits
@@ -48,7 +48,7 @@ limitSchema.statics.findByLimits = (limits)->
       return
 
 limitSchema.statics.testLimits = (limits)->
-  When.promise (resolve, reject, notify)->
+  When.promise (resolve, reject)->
     if !limits? or limits.length < 1
       resolve true
       return
