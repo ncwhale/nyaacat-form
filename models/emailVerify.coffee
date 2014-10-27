@@ -21,17 +21,16 @@ emailVerifySchema.index
 
 # One email address may need more actions one time.
 # So no limit here.
-
 emailVerifySchema.statics.findById = (id)->
   When.promise (resolve, reject)->
-    models.EmailVerify.findById
-      _id: id
-    , (err, EmailVerify)->
-      if !err and EmailVerify?
-        resolve EmailVerify
-      else
-        reject err
-      return
+    models.EmailVerify.collection.findById id,
+      (err, EmailVerify)->
+        if !err and EmailVerify?
+          resolve EmailVerify
+        else
+          reject err
+        return
+    return
 
 emailVerifySchema.statics.findByEmail = (email)->
   When.promise (resolve, reject)->

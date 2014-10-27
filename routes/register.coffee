@@ -33,7 +33,6 @@ clip_question = (q)->
 
 #Router for view page.
 router.get '/', (req, res)->
-  #req.session.starttime ?= new Date()
   req.session.ip = req.ip
   questions = qa.get()
   req.session.questions = clip_question questions
